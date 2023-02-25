@@ -1,9 +1,9 @@
 import React from "react";
-import { List, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import TicketComponent from "./components/TicketComponent";
+import TicketsComponent from "./components/TicketsComponent";
 
-const tickets: {title: string}[] = [
+const tickets = [
   {title: "最初のチケット"},
   {title: "2番目のチケット"},
   {title: "3番目のチケット"},
@@ -15,11 +15,7 @@ function App() {
       <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
         TinyPDM
       </Typography>
-      <List dense={false}>
-        {tickets.map((ticket, i) => 
-          <TicketComponent title={ticket.title} />
-        )}
-      </List>      
+      <TicketsComponent tickets={tickets} />
     </Container>
   );
 }

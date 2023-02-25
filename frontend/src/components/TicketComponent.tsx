@@ -1,14 +1,14 @@
 import React from "react";
 import { ListItem, ListItemText } from "@mui/material";
 
-type Ticket = {
-  title: string;
+type TicketComponentProps = {
+  ticket: {title: string}
 }
 
-const TicketComponent = ({ title }: Ticket) => {
+const TicketComponent = ({ ticket }: TicketComponentProps) => {
   return (
     <ListItem>
-      <ListItemText primary={title} />
+      <ListItemText primary={ticket.title} />
     </ListItem>
   );
 }
