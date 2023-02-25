@@ -1,19 +1,25 @@
-import React from 'react';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
-import { Container } from '@mui/system';
+import React from "react";
+import { List, Typography } from "@mui/material";
+import { Container } from "@mui/system";
+import TicketComponent from "./components/TicketComponent";
+
+const tickets: {title: string}[] = [
+  {title: "最初のチケット"},
+  {title: "2番目のチケット"},
+  {title: "3番目のチケット"},
+];
 
 function App() {
   return (
     <Container maxWidth="lg">
-      <Typography sx={{mt: 4, mb: 2}} variant='h4' component='div'>TinyPDM</Typography>
+      <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
+        TinyPDM
+      </Typography>
       <List dense={false}>
-        <ListItem key={1}>
-          <ListItemText primary='最初のチケット' />
-        </ListItem>
-        <ListItem key={2}>
-          <ListItemText primary='2番目のチケット' />
-        </ListItem>
-      </List>
+        {tickets.map((ticket, i) => 
+          <TicketComponent title={ticket.title} />
+        )}
+      </List>      
     </Container>
   );
 }
