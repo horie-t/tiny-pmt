@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 public class TicketController {
 
     @GetMapping("/tickets")
-    Flux<TicketDTO> hello() {
+    Flux<TicketDTO> ListTicket() {
         return Flux.fromArray(new TicketDTO[]{new TicketDTO("最初のチケット"), new TicketDTO("2番目のチケット")});
     }
 }
