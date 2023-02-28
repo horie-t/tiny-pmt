@@ -2,20 +2,28 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import TicketsComponent from "./components/TicketsComponent";
-
-const tickets = [
-  {title: "最初のチケット"},
-  {title: "2番目のチケット"},
-  {title: "3番目のチケット"},
-];
+import axios from "axios";
 
 function App() {
+  const [tickets, setTickets] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get("http://localhost:8080/tickets").then((response) => {
+      setTickets(response.data);
+    });
+  }, []);
+
   return (
     <Container maxWidth="lg">
       <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
         TinyPMT
       </Typography>
-      <TicketsComponent tickets={tickets} />
+      {(() =>  {
+        if (tickets != null) {
+          return <TicketsComponent tickets={tickets} />;}
+        else { 
+          return "";
+        }})()}
     </Container>
   );
 }

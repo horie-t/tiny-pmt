@@ -1,11 +1,13 @@
 package com.tehorie.tinypmt.presentation;
 
 import com.tehorie.tinypmt.presentation.model.TicketDTO;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class TicketController {
 
     @GetMapping("/tickets")
