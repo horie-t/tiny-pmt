@@ -4,11 +4,13 @@ import com.tehorie.tinypmt.presentation.model.TicketDTO;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @Tag(name = "Ticket", description = "The ticket API")
 public class TicketController {
 
