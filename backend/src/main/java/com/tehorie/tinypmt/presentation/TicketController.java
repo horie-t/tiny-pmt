@@ -19,6 +19,6 @@ public class TicketController {
             @ApiResponse(responseCode = "200", description = "OK")
     })
     Flux<TicketDTO> ListTicket() {
-        return Flux.fromArray(new TicketDTO[]{new TicketDTO("最初のチケット"), new TicketDTO("2番目のチケット")});
+        return Flux.fromArray(new TicketDTO[]{new TicketDTO("0000000000011","最初のチケット"), new TicketDTO("00000000000000022","2番目のチケット")});
     }
 }
