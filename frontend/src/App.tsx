@@ -1,8 +1,9 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import TicketsComponent from "./components/TicketsComponent";
 import axios from "axios";
+import { Add } from "@mui/icons-material";
 
 function App() {
   const [tickets, setTickets] = React.useState(null);
@@ -24,6 +25,13 @@ function App() {
         else { 
           return "";
         }})()}
+        <Fab color="primary" aria-label="add" onClick={e => {
+            axios.post("http://localhost:8080/tickets", {title: "新しいチケット", description: "何かする"})
+            .then(console.log)
+            .catch(console.log);
+          }}>
+          <Add  />
+        </Fab>
     </Container>
   );
 }
