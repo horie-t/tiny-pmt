@@ -9,7 +9,7 @@ function App() {
 
   React.useEffect(() => {
     axios.get("http://localhost:8080/tickets").then((response) => {
-      setTickets(response.data);
+      setTickets(response.data.results);
     });
   }, []);
 
