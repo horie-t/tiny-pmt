@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { AppBar, Box, Button, Dialog, Divider, Fab, IconButton, List, ListItem, ListItemText, Slide, TextField, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Dialog, Fab, IconButton, Slide, TextField, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import TicketsComponent from "./components/TicketsComponent";
 import axios from "axios";
@@ -31,6 +31,20 @@ function App() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // チケット・データ
+  const [ticket, setTicket] = React.useState({
+    title: "",
+    description: ""
+  });
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTicket({ ...ticket, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e: React.FormEvent) => {
+    axios.post("http://localhost:8080/tickets", ticket)
+    .then(console.log);
+    handleClose();
   };
 
   return (
@@ -67,7 +81,7 @@ function App() {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               チケットを作成
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <Button autoFocus color="inherit" onClick={handleSubmit}>
               保存
             </Button>
           </Toolbar>
@@ -80,14 +94,15 @@ function App() {
           noValidate
           autoComplete="off"
         >
-          <TextField id="standard-basic" label="タイトル" variant="standard" onChange={(event) => null}/><br />
+          <TextField id="standard-basic" label="タイトル" variant="standard" name="title" onChange={handleTextChange}/><br />
           <TextField
             id="outlined-multiline-static"
             label="説明"
             multiline
             rows={4}
+            name="description"
             defaultValue=""
-            onChange={() => null}
+            onChange={handleTextChange}
           />
         </Box>
       </Dialog>
