@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 @RestController
 @Tag(name = "Ticket", description = "The ticket API")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:5173")
 public class TicketController {
 
     @PostMapping(value =  "/tickets", produces = "application/json")

@@ -1,18 +1,21 @@
 import * as React from 'react';
 import ButtonAppBar from './components/ButtonAppBar';
 import TicketsComponent from './components/TicketsComponent';
-
-const tickets = [
-  {title: "最初のチケット"},
-  {title: "2番目のチケット"},
-  {title: "3番目のチケット"},
-];
+import axios from "axios";
 
 export default function App() {
+  const [tickets, setTickets] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get("http://localhost:8080/tickets").then((response) => {
+      setTickets(response.data.results);
+    });
+  }, []);
+
   return (
     <div>
       <ButtonAppBar></ButtonAppBar>
-      <TicketsComponent tickets={tickets} />
+      {tickets != null ? <TicketsComponent tickets={tickets} /> : ""}
     </div>
   );
 }
