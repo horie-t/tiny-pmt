@@ -1,31 +1,18 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import { Container } from "@mui/system";
-import TicketsComponent from "./components/TicketsComponent";
-import axios from "axios";
+import * as React from 'react';
+import ButtonAppBar from './components/ButtonAppBar';
+import TicketsComponent from './components/TicketsComponent';
 
-function App() {
-  const [tickets, setTickets] = React.useState(null);
+const tickets = [
+  {title: "最初のチケット"},
+  {title: "2番目のチケット"},
+  {title: "3番目のチケット"},
+];
 
-  React.useEffect(() => {
-    axios.get("http://localhost:8080/tickets").then((response) => {
-      setTickets(response.data);
-    });
-  }, []);
-
+export default function App() {
   return (
-    <Container maxWidth="lg">
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
-        TinyPMT
-      </Typography>
-      {(() =>  {
-        if (tickets != null) {
-          return <TicketsComponent tickets={tickets} />;}
-        else { 
-          return "";
-        }})()}
-    </Container>
+    <div>
+      <ButtonAppBar></ButtonAppBar>
+      <TicketsComponent tickets={tickets} />
+    </div>
   );
 }
-
-export default App;
