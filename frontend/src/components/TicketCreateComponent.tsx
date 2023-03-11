@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { AddCircle } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Stack } from '@mui/material';
+import axios from 'axios';
 
 type Ticket = {
   title: string,
@@ -18,7 +19,11 @@ type Ticket = {
 export default function TicketCreate() {
   const { control, handleSubmit, reset } = useForm<Ticket>();
   const onSubmit: SubmitHandler<Ticket> = (ticket) => {
-    console.log(ticket);
+    axios.post("http://localhost:8080/tickets", ticket).then(response => {
+      console.log(response.data);
+    }).catch(error => {
+      console.log(error);
+    });
     handleClose();
   };
 
