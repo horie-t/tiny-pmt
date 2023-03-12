@@ -7,7 +7,7 @@ type TicketComponentProps = {
 
 const TicketComponent = ({ ticket }: TicketComponentProps) => {
   return (
-    <ListItem>
+    <ListItem sx={{pl: 2, pt: 0, pb: 0, pr: 2}}>
       <ListItemText primary={ticket.title} />
     </ListItem>
   );
