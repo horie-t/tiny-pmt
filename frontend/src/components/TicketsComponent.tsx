@@ -3,7 +3,10 @@ import { List } from "@mui/material";
 import TicketComponent from "./TicketComponent";
 
 type TicketsComponentProps = {
-  tickets: {title: string}[];
+  tickets: {
+    id: string,
+    title: string
+  }[];
 }
 
 const TicketsComponent = ({tickets} : TicketsComponentProps) => {
