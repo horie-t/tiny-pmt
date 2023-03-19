@@ -10,11 +10,7 @@ import { AddCircle } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Stack } from '@mui/material';
 import axios from 'axios';
-
-type Ticket = {
-  title: string,
-  description: string,
-}
+import { Ticket } from '../model/Ticket';
 
 export default function TicketCreate() {
   const { control, handleSubmit, reset } = useForm<Ticket>();

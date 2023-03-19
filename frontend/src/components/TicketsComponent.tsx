@@ -1,12 +1,10 @@
 import React from "react";
 import { List } from "@mui/material";
 import TicketComponent from "./TicketComponent";
+import { Ticket } from "../model/Ticket";
 
 type TicketsComponentProps = {
-  tickets: {
-    id: string,
-    title: string
-  }[];
+  tickets: Ticket[];
 }
 
 const TicketsComponent = ({tickets} : TicketsComponentProps) => {
