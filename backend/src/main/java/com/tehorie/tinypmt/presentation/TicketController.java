@@ -36,8 +36,7 @@ public class TicketController {
             @ApiResponse(responseCode = "200", description = "OK")
     })
     Mono<TicketResponse> getTicket(@PathVariable String id) {
-        // TODO リポジトリからデータを取得する
-        return Mono.just(new TicketResponse(id, "%sのチケットを返す予定です".formatted(id), ""));
+        return ticketService.getTicket(id);
     }
 
     @GetMapping(value = "/tickets", produces = "application/json")

@@ -22,4 +22,9 @@ public class TicketService {
         return ticketRepository.save(ticket)
                 .map(savedTicket -> new TicketResponse(savedTicket.getId().toString(), savedTicket.getTitle(), savedTicket.getDescription()));
     }
+
+    public Mono<TicketResponse> getTicket(String id) {
+        return ticketRepository.findById(UUID.fromString(id))
+                .map(findTicket -> new TicketResponse(findTicket.getId().toString(), findTicket.getTitle(), findTicket.getDescription()));
+    }
 }
