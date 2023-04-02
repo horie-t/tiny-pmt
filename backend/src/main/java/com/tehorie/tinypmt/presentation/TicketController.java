@@ -1,5 +1,6 @@
 package com.tehorie.tinypmt.presentation;
 
+import com.tehorie.tinypmt.application.TicketService;
 import com.tehorie.tinypmt.presentation.dto.ListTicketsResponse;
 import com.tehorie.tinypmt.presentation.dto.TicketResponse;
 import com.tehorie.tinypmt.presentation.dto.TicketRequestBody;
@@ -16,14 +17,18 @@ import java.util.Arrays;
 @Tag(name = "Ticket", description = "The ticket API")
 @CrossOrigin("http://localhost:5173")
 public class TicketController {
+    private final TicketService ticketService;
+
+    public TicketController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
 
     @PostMapping(value =  "/tickets", produces = "application/json")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created")
     })
     Mono<TicketResponse> createTicket(@RequestBody TicketRequestBody ticket) {
-        // TODO リポジトリにデータを登録する
-        return Mono.just(new TicketResponse("0000000000033", ticket.getDescription(), ticket.getDescription()));
+        return ticketService.createTicket(ticket);
     }
 
     @GetMapping(value = "/tickets/{id}", produces = "application/json")
