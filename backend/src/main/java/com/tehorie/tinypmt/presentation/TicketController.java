@@ -44,19 +44,15 @@ public class TicketController {
             @ApiResponse(responseCode = "200", description = "OK")
     })
     Mono<ListTicketsResponse> listTicket() {
-        // TODO リポジトリからデータを取得する
-        return Mono.just(new ListTicketsResponse(Arrays.asList(
-                new TicketResponse("0000000000011","最初のチケット", "何をすべきか検討する"),
-                new TicketResponse("0000000000022","2番目のチケット", "優先順位を検討する")
-        )));
+        return ticketService.listTicket();
     }
 
     @DeleteMapping("/tickets/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK")
     })
-    void deleteTicket(@PathVariable String id) {
-        // TODO リポジトリのデータを削除する
+    Mono<Void> deleteTicket(@PathVariable String id) {
+        return ticketService.deleteTicket(id);
     }
 
     @PatchMapping(value = "/tickets/{id}", produces = "application/json")
@@ -64,12 +60,7 @@ public class TicketController {
             @ApiResponse(responseCode = "200", description = "OK")
     })
     Mono<TicketResponse> updateTicket(@PathVariable String id, @RequestBody TicketRequestBody ticket) {
-        // TODO リポジトリのデータを更新する
-        TicketResponse existTicket = new TicketResponse("", "古いチケットタイトル", "古い説明");
-        existTicket.setId(id);
-        existTicket.setTitle(ticket.getTitle() != null ? ticket.getTitle() : existTicket.getTitle());
-        existTicket.setDescription(ticket.getDescription() != null ? ticket.getDescription() : existTicket.getDescription());
-        return Mono.just(existTicket);
+        return ticketService.updateTicket(id, ticket);
     }
 
     @PutMapping(value = "/tickets/{id}", produces = "application/json")
@@ -77,7 +68,6 @@ public class TicketController {
             @ApiResponse(responseCode = "200", description = "OK")
     })
     Mono<TicketResponse> replaceTicket(@PathVariable String id, @RequestBody TicketRequestBody ticket) {
-        // TODO リポジトリのデータを置き換える
-        return Mono.just(new TicketResponse(id, ticket.getTitle(), ticket.getDescription()));
+        return ticketService.replaceTicket(id, ticket);
     }
 }
