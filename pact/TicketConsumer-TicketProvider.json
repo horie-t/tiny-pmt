@@ -1,0 +1,67 @@
+{
+  "consumer": {
+    "name": "TicketConsumer"
+  },
+  "interactions": [
+    {
+      "description": "チケットが存在する",
+      "providerStates": [
+        {
+          "name": "チケットリストを作成する"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/tickets"
+      },
+      "response": {
+        "body": {
+          "results": [
+            {
+              "description": "いつやるか",
+              "id": "1f6d3281-fb11-4140-930e-dba73a25d808",
+              "title": "仮タイトル"
+            },
+            {
+              "description": "今でしょ",
+              "id": "2287ca6e-35f3-495f-ad5f-49744a6345bc",
+              "title": "仮タイトル2"
+            }
+          ]
+        },
+        "headers": {
+          "content-type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "TicketProvider"
+  }
+}
