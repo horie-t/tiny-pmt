@@ -2,18 +2,19 @@ import * as React from 'react';
 import ButtonAppBar from './components/ButtonAppBar';
 import TicketsComponent from './components/TicketsComponent';
 import axios from "axios";
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { AddCircle } from '@mui/icons-material';
 import TicketCreate from './components/TicketCreateComponent';
+import { TicketsApi } from './infrastracture/restapi/TicketsApi';
+import { Ticket } from './model/Ticket';
+
+const ticketsApi = new TicketsApi();
 
 export default function App() {
-  const [tickets, setTickets] = React.useState(null);
+  const [tickets, setTickets] = React.useState<Ticket[]>([]);
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/tickets").then((response) => {
-      setTickets(response.data.results);
-    });
+    ticketsApi.list().then((tickets) => {setTickets(tickets)});
   }, []);
 
   return (

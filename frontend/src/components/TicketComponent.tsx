@@ -4,6 +4,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Ticket } from "../model/Ticket";
+import { TicketsApi } from "../infrastracture/restapi/TicketsApi";
+
+const ticketsApi = new TicketsApi();
 
 type TicketComponentProps = {
   ticket: Ticket
@@ -15,8 +18,8 @@ const TicketComponent = ({ ticket }: TicketComponentProps) => {
     defaultValues: ticket
   });
   const onSubmit: SubmitHandler<Ticket> = (ticket) => {
-    axios.put(`http://localhost:8080/tickets/${ticket.id}`, ticket).then(response => {
-      console.log(response.data);
+    ticketsApi.replase(ticket).then((ticket) => {
+      console.log(ticket);
     }).catch(error => {
       console.log(error);
     });
@@ -34,7 +37,7 @@ const TicketComponent = ({ ticket }: TicketComponentProps) => {
   
   // チケット削除
   const handleDeleteClick = () => {
-    axios.delete(`http://localhost:8080/tickets/${ticket.id}`).then(response => {
+    ticketsApi.delete(ticket).then(() => {
       console.log("Delete success.");
     }).catch(error => {
       console.log(error);
