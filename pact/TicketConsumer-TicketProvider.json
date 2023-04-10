@@ -4,10 +4,147 @@
   },
   "interactions": [
     {
-      "description": "チケットが存在する",
+      "description": "チケットを作成する",
+      "request": {
+        "body": {
+          "description": "新しい説明 ",
+          "title": "新しいタイトル"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "content-type": "application/json"
+        },
+        "method": "POST",
+        "path": "/tickets"
+      },
+      "response": {
+        "body": {
+          "description": "新しい説明 ",
+          "id": "cadec1ba-14b8-4f56-987b-7bc5c344da14",
+          "title": "新しいタイトル"
+        },
+        "headers": {
+          "content-type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 201
+      }
+    },
+    {
+      "description": "チケットを削除する",
       "providerStates": [
         {
-          "name": "チケットリストを作成する"
+          "name": "1f6d3281-fb11-4140-930e-dba73a25d808のチケットが存在する"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/tickets/1f6d3281-fb11-4140-930e-dba73a25d808"
+      },
+      "response": {
+        "headers": {
+          "content-type": "application/json"
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "チケットを更新する",
+      "providerStates": [
+        {
+          "name": "id:1f6d3281-fb11-4140-930e-dba73a25d808のチケットが存在する"
+        }
+      ],
+      "request": {
+        "body": {
+          "description": "更新されていること",
+          "title": "更新タイトル"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "content-type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/tickets/1f6d3281-fb11-4140-930e-dba73a25d808"
+      },
+      "response": {
+        "body": {
+          "description": "更新されていること",
+          "id": "1f6d3281-fb11-4140-930e-dba73a25d808",
+          "title": "更新タイトル"
+        },
+        "headers": {
+          "content-type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "存在するチケットを取得する",
+      "providerStates": [
+        {
+          "name": "id:1f6d3281-fb11-4140-930e-dba73a25d808のチケットが存在する"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/tickets/1f6d3281-fb11-4140-930e-dba73a25d808"
+      },
+      "response": {
+        "body": {
+          "description": "いつやるか",
+          "id": "1f6d3281-fb11-4140-930e-dba73a25d808",
+          "title": "仮タイトル"
+        },
+        "headers": {
+          "content-type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "チケットのリストを取得する",
+      "providerStates": [
+        {
+          "name": "チケットが存在する"
         }
       ],
       "request": {
