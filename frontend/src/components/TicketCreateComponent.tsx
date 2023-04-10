@@ -11,12 +11,15 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Stack } from '@mui/material';
 import axios from 'axios';
 import { Ticket } from '../model/Ticket';
+import { TicketsApi } from '../infrastracture/restapi/TicketsApi';
+
+const ticketsApi = new TicketsApi();
 
 export default function TicketCreate() {
   const { control, handleSubmit, reset } = useForm<Ticket>();
   const onSubmit: SubmitHandler<Ticket> = (ticket) => {
-    axios.post("http://localhost:8080/tickets", ticket).then(response => {
-      console.log(response.data);
+    ticketsApi.create(ticket).then(ticket => {
+      console.log(ticket);
     }).catch(error => {
       console.log(error);
     });
